@@ -22,7 +22,7 @@
 
 ---
 ## Diagram 
-![Phoenix Metrics - Prompts versions](images/image.png)
+![ input - transc - get note - UI - get note edited - DB - Phoenix ](images/diagram-feedback-loop.drawio.png)
 
 ## Prompt Versioning
 
