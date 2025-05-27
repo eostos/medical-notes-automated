@@ -22,6 +22,7 @@
 
 ---
 ## Diagram 
+
 ![ input - transc - get note - UI - get note edited - DB - Phoenix ](images/diagram-feedback-loop.drawio.png)
 
 ## Prompt Versioning
@@ -100,6 +101,7 @@ docker run -p 6006:6006 -p 4317:4317 -i -t arizephoenix/phoenix:latest
 - Phoenix [http://localhost:6006](http://localhost:6006)
 
 - Once the edited note is saved you need to wait until a pop up comes up that says the score. 
+![UI - ](images/image_copy.png)
 - docker exec transcription-app bash ( it is for  database analize)
 
 ### Run locally - Set up virtual environment and install dependencies.
