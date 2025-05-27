@@ -1,0 +1,32 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment
+my_env/
+.env
+
+# Audio & media files
+#*.mp3
+
+# Database files
+*.db
+database.db
+db/database.db
+
+# Transcriptions & outputs
+output/
+transcriptions/
+uploads/
+
+# Logs
+*.log
+
+# VSCode or PyCharm settings
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,5 @@
+flask
+python-dotenv
+openai>=1.0.0
+arize-phoenix
+openinference-instrumentation-openai

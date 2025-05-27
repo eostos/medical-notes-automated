@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical Notes</title>
+</head>
+<body>
+    <h2>Upload Audio File</h2>
+    <input type="file" id="audioFile" accept="audio/*">
+    <button onclick="uploadAudio()">Analyze</button>
+
+    <h3>Generated Note (Editable):</h3>
+    <textarea id="resultText" rows="10" cols="80"></textarea><br>
+    <button onclick="saveText()">SAVE</button>
+    <input type="hidden" id="transcriptionHidden">
+    <input type="hidden" id="draftNoteHidden">
+    <input type="hidden" id="filenameHidden">
+
+    <script>
+        function uploadAudio() {
+            const fileInput = document.getElementById('audioFile');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append("audio", file);
+
+            // Save filename for reference
+            document.getElementById("filenameHidden").value = file.name;
+
+            fetch("/analyze", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("resultText").value = data.result;
+                document.getElementById("draftNoteHidden").value = data.result;
+                document.getElementById("transcriptionHidden").value = data.transcription;
+                document.getElementById("filenameHidden").value = data.filename;
+            });
+        }
+
+        function saveText() {
+            const text = document.getElementById("resultText").value;
+            const draftNote = document.getElementById("draftNoteHidden").value;
+            const transcription = document.getElementById("transcriptionHidden").value;
+            const filename = document.getElementById("filenameHidden").value;
+
+            const formData = new FormData();
+            formData.append("text", text);  // final edited note
+            formData.append("draft_note", draftNote);  // original generated noete
+            formData.append("transcription", transcription);  // original transcriptsd
+            formData.append("filename", filename);
+
+            fetch("/save", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => alert(`Note saved. Score: ${data.score}`));
+        }
+    </script>
+</body>
+</html>
